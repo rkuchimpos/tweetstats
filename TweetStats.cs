@@ -9,15 +9,6 @@ using CsQuery;
 // csc TweetStats.cs /reference:CsQuery.dll && start TweetStats
 public class TweetStatsRunner
 {
-	/*
-	Example output:
-	Short Tweets Sample Size: 50
-	        Mean Engagements: 3823.28
-	                 Std Dev: 8512.51619684995
-	 Long Tweets Sample Size: 50
-	        Mean Engagements: 1799.86
-	                 Std Dev: 3613.05762314459
-	*/
 	public static void Main()
 	{
 		List<Tweet> tweets = new TwitterService().GetTweets(/* HTML DATA SOURCE */);
@@ -26,15 +17,17 @@ public class TweetStatsRunner
 
 		List<Tweet> shortTweetsSample = new List<Tweet>();
 		List<Tweet> longTweetsSample = new List<Tweet>();
+		
+		int sampleSize = 30;
 
 		Random rand = new Random();
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < sampleSize; i++) {
 			int r = rand.Next(shortTweetsArchive.Count);
 			shortTweetsSample.Add(shortTweetsArchive[r]);
 			shortTweetsArchive.RemoveAt(r); // Sampling without replacement
 		}
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < sampleSize; i++) {
 			int r = rand.Next(longTweetsArchive.Count);
 			longTweetsSample.Add(longTweetsArchive[r]);
 			longTweetsArchive.RemoveAt(r);
