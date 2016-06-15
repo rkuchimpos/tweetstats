@@ -187,7 +187,7 @@ public static class IOUtils
 {	
 	public static void Export(IEnumerable<int> source, string path)
 	{
-		string data = String.Join("\n", source);
+		string data = String.Join("\r\n", source);
 		// Assume file does not already exist
 		File.WriteAllText(path, data);
 	}
